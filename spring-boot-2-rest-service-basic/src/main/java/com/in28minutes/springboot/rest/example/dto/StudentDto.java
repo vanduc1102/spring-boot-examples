@@ -14,7 +14,11 @@ public class StudentDto {
   @ApiModelProperty(hidden = true)
   private Long id;
 
-  private String name;
+  @ApiModelProperty(example = "vanduc1102")
+  private String username;
+
+  @ApiModelProperty(example = "Donald Duck")
+  private String displayName;
 
   @NotNull(message = "400-001|Passport number is required.")
   @ApiModelProperty(example = "C12313123")

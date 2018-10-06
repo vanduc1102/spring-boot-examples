@@ -1,12 +1,13 @@
 package com.in28minutes.springboot.rest.example.service;
 
-import com.in28minutes.springboot.rest.example.convertor.StudentConvertor;
+import com.in28minutes.springboot.rest.example.convertor.StudentConverter;
 import com.in28minutes.springboot.rest.example.dto.StudentDto;
 import com.in28minutes.springboot.rest.example.entity.StudentEntity;
 import com.in28minutes.springboot.rest.example.exception.StudentNotFoundException;
 import com.in28minutes.springboot.rest.example.repository.StudentRepository;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,32 +16,36 @@ public class StudentService {
 
   @Autowired private StudentRepository studentRepository;
   @Autowired private GithubClientService githubClientService;
-  @Autowired private StudentConvertor studentConvertor;
+  @Autowired private StudentConverter studentConverter;
 
-  public StudentEntity findById(Long id) {
+  public StudentDto findById(Long id) {
     Optional<StudentEntity> student = studentRepository.findById(id);
 
     if (student.isPresent()) {
-      return student.get();
+      return studentConverter.toDto(student.get());
     }
     throw new StudentNotFoundException("id-" + id);
   }
 
-  public List<StudentEntity> findAll() {
-    return studentRepository.findAll();
+  public List<StudentDto> findAll() {
+    return studentRepository
+        .findAll()
+        .stream()
+        .map(e -> studentConverter.toDto(e))
+        .collect(Collectors.toList());
   }
 
   public StudentEntity save(StudentDto student) {
-    StudentEntity studentEntity = studentConvertor.toEntity(student);
-    studentEntity.setGithub(githubClientService.getUser(student.getName()));
+    StudentEntity studentEntity = studentConverter.toEntity(student);
+    studentEntity.setGithub(githubClientService.getUser(student.getUsername()));
     return studentRepository.save(studentEntity);
   }
 
-  public StudentEntity update(StudentDto student, Long id) {
-    StudentEntity studentEntity = studentConvertor.toEntity(student);
+  public StudentDto update(StudentDto student, Long id) {
+    StudentEntity studentEntity = studentConverter.toEntity(student);
     findById(id);
     studentEntity.setId(id);
-    return studentRepository.save(studentEntity);
+    return studentConverter.toDto(studentRepository.save(studentEntity));
   }
 
   public void deleteById(Long id) {

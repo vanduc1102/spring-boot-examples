@@ -15,7 +15,8 @@ import lombok.Setter;
 public class StudentEntity {
 
   @Id @GeneratedValue private Long id;
-  private String name;
+  private String username;
+  private String displayName;
   private String passportNumber;
   private String email;
   private String phoneNumber;

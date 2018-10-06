@@ -26,12 +26,12 @@ public class StudentController {
   @Autowired private StudentService studentService;
 
   @GetMapping
-  public List<StudentEntity> getAllStudents() {
+  public List<StudentDto> getAllStudents() {
     return studentService.findAll();
   }
 
   @PostMapping
-  public ResponseEntity<StudentEntity> createStudent(@RequestBody @Valid StudentDto student) {
+  public ResponseEntity<StudentDto> createStudent(@RequestBody @Valid StudentDto student) {
     StudentEntity savedStudent = studentService.save(student);
 
     URI location =
@@ -44,7 +44,7 @@ public class StudentController {
   }
 
   @GetMapping("/{id}")
-  public StudentEntity getStudent(@PathVariable Long id) {
+  public StudentDto getStudent(@PathVariable Long id) {
     return studentService.findById(id);
   }
 

@@ -21,8 +21,6 @@
 *.classpath
 *.settings
 *.project
-*.mvn
-mvnw
 target
 *.DS_Store
 

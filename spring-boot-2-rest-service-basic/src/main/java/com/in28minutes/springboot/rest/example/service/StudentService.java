@@ -7,12 +7,15 @@ import com.in28minutes.springboot.rest.example.repository.StudentRepository;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class StudentService {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(StudentService.class);
   @Autowired private StudentRepository studentRepository;
   @Autowired private GithubClientService githubClientService;
 
@@ -43,6 +46,7 @@ public class StudentService {
   }
 
   public void deleteById(Long id) {
+    LOGGER.debug("random debug message for unit-test");
     studentRepository.deleteById(id);
   }
 

@@ -7,6 +7,7 @@
 * Create custom configuration on local: `application-local.properties`
 * Swagger-UI: [http://localhost:8080/swagger-ui.html#/](http://localhost:8080/swagger-ui.html#/)
 * In case you are using h2, DB management is `http://localhost:8080/h2/`
+* Check code coverage: `./mvnw clean jacoco:prepare-agent install`
 
 #### Deployment 
 

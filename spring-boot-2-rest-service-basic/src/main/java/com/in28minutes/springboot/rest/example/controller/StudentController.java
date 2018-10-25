@@ -32,7 +32,7 @@ public class StudentController {
 
   @PostMapping
   public ResponseEntity<StudentDto> createStudent(@RequestBody @Valid StudentDto student) {
-    StudentEntity savedStudent = studentService.save(student);
+    StudentDto savedStudent = studentService.save(student);
 
     URI location =
         ServletUriComponentsBuilder.fromCurrentRequest()
@@ -54,7 +54,7 @@ public class StudentController {
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<StudentEntity> updateStudent(
+  public ResponseEntity<Void> updateStudent(
       @RequestBody @Valid StudentDto student, @PathVariable Long id) {
     studentService.update(student, id);
     return ResponseEntity.noContent().build();

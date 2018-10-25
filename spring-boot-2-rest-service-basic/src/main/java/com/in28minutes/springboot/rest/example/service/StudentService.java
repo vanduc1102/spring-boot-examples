@@ -32,10 +32,12 @@ public class StudentService {
     return studentRepository.findAll().stream().map(e -> toDto(e)).collect(Collectors.toList());
   }
 
-  public StudentEntity save(StudentDto student) {
+  public StudentDto save(StudentDto student) {
     StudentEntity studentEntity = toEntity(student);
     studentEntity.setGithub(githubClientService.getUser(student.getUsername()));
-    return studentRepository.save(studentEntity);
+    studentEntity = studentRepository.save(studentEntity);
+    student.setId(studentEntity.getId());
+    return student;
   }
 
   public StudentDto update(StudentDto student, Long id) {

@@ -15,9 +15,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class StudentDtoValidationTest {
-  private StudentDto studentDto;
+
   private static ValidatorFactory validatorFactory;
   private static Validator validator;
+  private StudentDto studentDto;
 
   @BeforeClass
   public static void createValidator() {

@@ -4,6 +4,7 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 public class PodamUtil {
+
   private static PodamFactory factory = new PodamFactoryImpl();
 
   private PodamUtil() {}

@@ -19,10 +19,9 @@ import org.mockito.junit.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class StudentControllerTest {
 
+  private static StudentDto studentDto;
   @Mock private StudentService studentService;
   @InjectMocks private StudentController studentController;
-
-  private static StudentDto studentDto;
 
   @Before
   public void init() {

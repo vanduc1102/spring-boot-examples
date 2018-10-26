@@ -1,0 +1,4 @@
+rootProject.name = 'module-rest-example'
+
+include 'dto'
+include 'app'

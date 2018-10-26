@@ -1,0 +1,36 @@
+buildscript {
+    repositories { mavenCentral() }
+}
+
+plugins { id "io.spring.dependency-management" version "1.0.5.RELEASE" }
+
+ext {
+    springBootVersion = '2.0.5.RELEASE'
+    ioSpringfoxVersion = '2.9.2'
+    hibernateValidatorVersion = '6.0.2.Final'
+    orgProjectlombokVersion = '1.18.2'
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+
+jar {
+    baseName = 'module-rest-example-dto'
+    version = '0.0.1-SNAPSHOT'
+}
+sourceCompatibility = 1.8
+
+repositories { mavenCentral() }
+
+dependencies {
+    compileOnly("io.springfox:springfox-swagger2:${ioSpringfoxVersion}")
+    compileOnly("io.springfox:springfox-swagger-ui:${ioSpringfoxVersion}")
+    compileOnly("org.projectlombok:lombok:${orgProjectlombokVersion}")
+    compileOnly("org.hibernate.validator:hibernate-validator:${hibernateValidatorVersion}")
+    compileOnly("org.hibernate.validator:hibernate-validator-annotation-processor:${hibernateValidatorVersion}")
+}
+
+dependencyManagement {
+    imports { mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") }
+}

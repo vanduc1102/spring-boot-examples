@@ -1,0 +1,9 @@
+
+target/
+.gradle/
+.idea/
+.vscode/
+app/build/
+app/target/
+dto/build/
+dto/target/

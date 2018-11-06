@@ -3,20 +3,41 @@
   xmlns="http://maven.apache.org/POM/4.0.0"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>module-rest-example-app</artifactId>
+
+  <groupId>com.wordpress.aduckdev</groupId>
+  <artifactId>module-rest-consumer-example</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
+  <name>spring-boot-2-rest-service</name>
+  <description>Spring Boot 2 and REST - Consumer Example Project</description>
+
   <parent>
-    <groupId>com.wordpress.aduckdev</groupId>
-    <artifactId>module-rest-example</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.1.0.RELEASE</version>
+    <relativePath/>
+    <!-- lookup parent from repository -->
   </parent>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <cobertura-maven-plugin.version>2.7</cobertura-maven-plugin.version>
+    <maven-resources-plugin.version>2.5</maven-resources-plugin.version>
+    <java.version>1.8</java.version>
+    <powermock.version>1.7.4</powermock.version>
+    <swagger-ui.version>2.9.2</swagger-ui.version>
+    <log4j-core.version>2.6.1</log4j-core.version>
+    <hibernate.validator.version>6.0.2.Final</hibernate.validator.version>
+    <module-rest-example-project.version>0.0.1-SNAPSHOT</module-rest-example-project.version>
+  </properties>
 
   <dependencies>
     <dependency>
       <groupId>com.wordpress.aduckdev</groupId>
       <artifactId>module-rest-example-dto</artifactId>
-      <version>${project.version}</version>
+      <version>${module-rest-example-project.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -31,10 +52,6 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-data-jpa</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -134,28 +151,8 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-dependencies</artifactId>
-        <version>${spring-boot.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
   <build>
     <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.3.2</version>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-        </configuration>
-      </plugin>
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
@@ -174,16 +171,30 @@
           </nonFilteredFileExtensions>
         </configuration>
       </plugin>
+      <!-- Google Java Format -->
+      <plugin>
+        <groupId>com.coveo</groupId>
+        <artifactId>fmt-maven-plugin</artifactId>
+        <version>2.5.1</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- jacoco -->
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
         <version>0.8.0</version>
         <configuration>
           <excludes>
-            <exclude>com/wordpress/aduckdev/module/rest/example/Application.class</exclude>
-            <exclude>com/wordpress/aduckdev/module/rest/example/configuration/**/*.*</exclude>
-            <exclude>com/wordpress/aduckdev/module/rest/example/exception/**/*.*</exclude>
-            <exclude>com/wordpress/aduckdev/module/rest/example/repository/**/*.*</exclude>
+            <exclude>com/wordpress/aduckdev/rest/consumer/Application.class</exclude>
+            <exclude>com/wordpress/aduckdev/rest/consumer/configuration/**/*.*</exclude>
+            <exclude>com/wordpress/aduckdev/rest/consumer/exception/**/*.*</exclude>
+            <exclude>com/wordpress/aduckdev/rest/consumer/repository/**/*.*</exclude>
           </excludes>
         </configuration>
         <executions>
@@ -214,7 +225,7 @@
                     <limit implementation="org.jacoco.report.check.Limit">
                       <counter>COMPLEXITY</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.50</minimum>
+                      <minimum>0.0</minimum>
                     </limit>
                   </limits>
                 </rule>
@@ -264,4 +275,3 @@
     </pluginRepository>
   </pluginRepositories>
 </project>
-

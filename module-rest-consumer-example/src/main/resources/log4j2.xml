@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+<Properties>
+  <Property name="PATTERN">%d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX} | %-5level | %msg%n </Property>
+</Properties>
+<CustomLevels>
+  <CustomLevel name="EVENT" intLevel="450"/>
+</CustomLevels>
+<Appenders>
+  <Console name="Console" target="SYSTEM_OUT">
+    <PatternLayout>
+      <Pattern>${PATTERN}</Pattern>
+    </PatternLayout>
+  </Console>
+</Appenders>
+<Loggers>
+  <Root level="EVENT">
+    <AppenderRef ref="Console" level="EVENT"/>
+  </Root>
+</Loggers>
+</Configuration>

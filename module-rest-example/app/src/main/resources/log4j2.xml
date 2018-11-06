@@ -3,9 +3,6 @@
   <Properties>
     <Property name="PATTERN">%d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX} | %-5level | %msg%n</Property>
   </Properties>
-  <CustomLevels>
-    <CustomLevel intLevel="450" name="EVENT"/>
-  </CustomLevels>
   <Appenders>
     <Console name="Console" target="SYSTEM_OUT">
       <PatternLayout>
@@ -14,8 +11,8 @@
     </Console>
   </Appenders>
   <Loggers>
-    <Root level="EVENT">
-      <AppenderRef level="EVENT" ref="Console"/>
+    <Root level="INFO">
+      <AppenderRef ref="Console"/>
     </Root>
   </Loggers>
 </Configuration>

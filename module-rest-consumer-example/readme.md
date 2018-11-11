@@ -5,11 +5,10 @@
 * Prepare pre-commit hook to keep project format `pre-commit.tpl`
 * Startup command: ` ./mvnw spring-boot:run `
 * Create custom configuration on local: `application-local.properties`
-* Swagger-UI: [http://localhost:8080/swagger-ui.html#/](http://localhost:8080/swagger-ui.html#/)
-* In case you are using h2, DB management is `http://localhost:8080/h2/`
+* Swagger-UI: [http://localhost:8089/swagger-ui.html#/](http://localhost:8080/swagger-ui.html#/)
 * Check code coverage: `./mvnw clean jacoco:prepare-agent install`
 
-#### Deployment 
+#### Deployment
 
 Set project active profile to `production` to disable Swagger-UI.
 
